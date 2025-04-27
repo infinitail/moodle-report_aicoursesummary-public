@@ -10,5 +10,5 @@
 
 ```
 # cd /path/to/moodle
-# git clone git@github.com:infinitail/moodle-report_aicoursesummary.git report/aicoursesummary
+# git clone git@github.com:infinitail/moodle-report_aicoursesummary-public.git report/aicoursesummary
 ```

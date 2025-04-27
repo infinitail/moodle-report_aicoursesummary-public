@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="report/aicoursesummary/db" VERSION="20250209" COMMENT="XMLDB file for Moodle report/aicoursesummary"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+  <TABLES>
+    <TABLE NAME="report_aicoursesummary_summaries" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="coursemodules" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="4" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="owner" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="questionpromptintro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="userpromptintro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="userpromptloop" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="datecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="report_aicoursesummary_questions" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="coursesummary" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="coursemodule" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="question" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="questiontext" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="questionprompt" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="questionunveil" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="qresponseid" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="scoredistributionquery" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="scoredistributionresponse" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="datecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="dateresponded" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="coursesummary" TYPE="foreign" FIELDS="coursesummary" REFTABLE="report_aicoursesummary_courses" REFFIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+        <KEY NAME="coursemodule" TYPE="foreign" FIELDS="coursemodule" REFTABLE="course_modules" REFFIELDS="id"/>
+        <KEY NAME="question" TYPE="foreign" FIELDS="question" REFTABLE="question" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="report_aicoursesummary_users" COMMENT="">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="coursesummary" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="aiquery" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="aiprompt" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="airesponse" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="responseid" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="datecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="dateresponded" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="coursesummary" TYPE="foreign" FIELDS="coursesummary" REFTABLE="report_aicoursesummary_courses" REFFIELDS="id"/>
+        <KEY NAME="course" TYPE="foreign" FIELDS="course" REFTABLE="course" REFFIELDS="id"/>
+        <KEY NAME="user" TYPE="foreign" FIELDS="user" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
